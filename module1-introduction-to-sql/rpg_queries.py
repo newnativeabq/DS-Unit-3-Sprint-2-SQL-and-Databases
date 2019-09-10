@@ -8,7 +8,7 @@ import sqlite3
 -
 -
 -
-- On average, how many Weapons does each character have?
+-
 '''
 # Helper Functions
 
@@ -117,4 +117,10 @@ with connection as conn:
     items_sum = 0
     for char_set in char_items:
         items_sum += len(char_set.values())
-    print('average items:', items_sum/len(char_items))
+    print('average items:', items_sum/len(char_items)
+    # On average, how many Weapons does each character have?
+    char_weapons = query_char_weapons(conn, 500)
+    items_sum = 0
+    for char_set in char_weapons:
+        items_sum += len(char_set.values())
+    print('average items:', items_sum/len(char_items)
