@@ -90,6 +90,11 @@ db_file_name = 'rpg_db.sqlite3'
 character_subclasses = ['cleric', 'fighter', 'mage', 'necromancer', 'thief']
 connection = create_connection(db_file_name)
 
+'''
+    PART 1: Querying DB
+    Use `sqlite3` to load and write queries to explore the data
+'''
+
 with connection as conn:
     # How many total Characters are there?
     total_char = query_total_char(conn)
@@ -116,11 +121,13 @@ with connection as conn:
     char_items = query_char_items(conn, 500)
     items_sum = 0
     for char_set in char_items:
-        items_sum += len(char_set.values())
-    print('average items:', items_sum/len(char_items)
+        # print(list(char_set.values())[0]) # debug
+        items_sum += len(list(char_set.values())[0])
+    print('average items:', items_sum/len(char_items))
     # On average, how many Weapons does each character have?
     char_weapons = query_char_weapons(conn, 500)
-    items_sum = 0
+    weapons_sum = 0
     for char_set in char_weapons:
-        items_sum += len(char_set.values())
-    print('average items:', items_sum/len(char_items)
+        # print(char_set.values()) # debug
+        weapons_sum += len(list(char_set.values())[0])
+    print('average weapons:', weapons_sum/len(char_weapons))
